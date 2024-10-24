@@ -1,0 +1,161 @@
+*&---------------------------------------------------------------------*
+*& Report  ZJQR
+*&
+*&---------------------------------------------------------------------*
+*&
+*&
+*&---------------------------------------------------------------------*
+*Robert Russell
+*BWIPP in SAP 
+*created 2009 updated 2010
+*contact me at rob.roosky@yahoo.com for more info
+REPORT  ZQR_PRINT.
+
+DATA: PARAMS LIKE PRI_PARAMS,
+      VALID    TYPE C,
+       iloop type string.
+
+new-page print on.
+
+
+
+skip 2.
+
+WRITE:/ 'Testing BWIPP: QR codes in SAP'.
+
+skip 2.
+
+write:  'Normal position:  qr code for http://bit.ly/robrscn'.
+*leave gap for qr code
+skip 6.
+PRINT-CONTROL FUNCTION 'ZBW01'.
+WRITE: 'http://bit.ly/robrscn' NO-GAP.
+PRINT-CONTROL FUNCTION 'ZBW02'.
+
+
+skip 2.
+
+write:  'Shift Left:      qr code for http://bit.ly/robrscn'.
+*leave gap for qr code
+skip 6.
+PRINT-CONTROL FUNCTION 'ZBW01'.
+PRINT-CONTROL FUNCTION 'ZLT50'.
+PRINT-CONTROL FUNCTION 'ZLT10'.
+PRINT-CONTROL FUNCTION 'ZLT01'.
+WRITE: 'http://bit.ly/robrscn' NO-GAP.
+PRINT-CONTROL FUNCTION 'ZBW02'.
+
+skip 2.
+write:  'Shift Right:     qr code for http://bit.ly/robrscn'.
+*leave gap for qr code
+skip 6.
+PRINT-CONTROL FUNCTION 'ZBW01'.
+PRINT-CONTROL FUNCTION 'ZRT50'.
+PRINT-CONTROL FUNCTION 'ZRT10'.
+PRINT-CONTROL FUNCTION 'ZRT01'.
+WRITE: 'http://bit.ly/robrscn' NO-GAP.
+PRINT-CONTROL FUNCTION 'ZBW02'.
+
+
+skip 2.
+write:  'Scale X axis:     qr code for http://bit.ly/robrscn'.
+*leave gap for qr code
+skip 6.
+PRINT-CONTROL FUNCTION 'ZBW01'.
+PRINT-CONTROL FUNCTION 'ZSX01'.
+PRINT-CONTROL FUNCTION 'ZSX01'.
+PRINT-CONTROL FUNCTION 'ZSX01'.
+PRINT-CONTROL FUNCTION 'ZSX01'.
+WRITE: 'http://bit.ly/robrscn' NO-GAP.
+PRINT-CONTROL FUNCTION 'ZBW02'.
+
+
+skip 2.
+write:  'Scale y axis:     qr code for http://bit.ly/robrscn'.
+*leave gap for qr code - y axis so the gap is bigger
+skip 8.
+PRINT-CONTROL FUNCTION 'ZBW01'.
+PRINT-CONTROL FUNCTION 'ZSY01'.
+PRINT-CONTROL FUNCTION 'ZSY01'.
+PRINT-CONTROL FUNCTION 'ZSY01'.
+PRINT-CONTROL FUNCTION 'ZSY01'.
+WRITE: 'http://bit.ly/robrscn' NO-GAP.
+PRINT-CONTROL FUNCTION 'ZBW02'.
+
+*page breaks need to be controlled.
+   NEW-PAGE.
+
+
+skip 2.
+write:  'Scale x/y axis:   qr code for http://bit.ly/robrscn'.
+*leave gap for qr code - y axis so the gap is bigger
+skip 8.
+PRINT-CONTROL FUNCTION 'ZBW01'.
+PRINT-CONTROL FUNCTION 'ZSY01'.
+PRINT-CONTROL FUNCTION 'ZSY01'.
+PRINT-CONTROL FUNCTION 'ZSY01'.
+PRINT-CONTROL FUNCTION 'ZSY01'.
+PRINT-CONTROL FUNCTION 'ZSX01'.
+PRINT-CONTROL FUNCTION 'ZSX01'.
+PRINT-CONTROL FUNCTION 'ZSX01'.
+PRINT-CONTROL FUNCTION 'ZSX01'.
+WRITE: 'http://bit.ly/robrscn' NO-GAP.
+PRINT-CONTROL FUNCTION 'ZBW02'.
+
+skip 6.
+
+skip 2.
+write:  'Use option parse -ascii value for "g":   qr code for http://www.^103oogle.com'.
+*leave gap for qr code -
+skip 6.
+PRINT-CONTROL FUNCTION 'ZBW01'.
+PRINT-CONTROL FUNCTION 'ZOP01'.
+WRITE: 'http://www.^103oogle.com' NO-GAP.
+PRINT-CONTROL FUNCTION 'ZBW02'.
+
+skip 6.
+
+skip 2.
+write:  'Rotate 45 degress:   qr code for http://bit.ly/robrscn'.
+*leave gap for qr code - rotating the qr code so the gap is bigger
+skip 8.
+PRINT-CONTROL FUNCTION 'ZBW01'.
+PRINT-CONTROL FUNCTION 'ZRO01'.
+WRITE: 'http://bit.ly/robrscn' NO-GAP.
+PRINT-CONTROL FUNCTION 'ZBW02'.
+
+skip 6.
+
+*page breaks added for testing
+   NEW-PAGE.
+   WRITE: 'skip page' NO-GAP.
+
+   NEW-PAGE.
+   WRITE: 'skip page' NO-GAP.
+
+
+   NEW-PAGE.
+   WRITE: 'skip page' NO-GAP.
+
+
+   NEW-PAGE.
+   WRITE: 'skip page' NO-GAP.
+
+
+   NEW-PAGE.
+
+   WRITE: 'skip page' NO-GAP.
+
+NEW-PAGE.
+
+write:  'Back to normal:  qr code for http://bit.ly/robrscn'.
+*leave gap for qr code
+skip 6.
+PRINT-CONTROL FUNCTION 'ZBW01'.
+WRITE: 'http://bit.ly/robrscn' NO-GAP.
+PRINT-CONTROL FUNCTION 'ZBW02'.
+write: /'123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890'.
+
+write: /'end'.
+
+WRITE:/.
